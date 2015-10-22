@@ -16,7 +16,7 @@ function showUserInfo() {
 					$(".username").text(data.returndata.username);
 					$("#friend_num").text(data.returndata.friend_num);
 					$("#message_num").text(data.returndata.message_num);
-					$("#user_icon").attr("onclick", "window.location=\"userinfo.jsp?targetNickname=" + $("#nickname").text() + "\"");
+					$("#user_icon").attr("onclick", "window.location=\"addicon.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "\"");
 
 				} else {
 					$("#nickname").text("null");

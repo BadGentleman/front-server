@@ -144,6 +144,15 @@
 					});
 				});
 
+				$(".icon").live('click', function() {
+					var classUsername = $(this).parents("li").find("name");
+					var tag_a = classUsername.children("a");
+					var targetNickname = tag_a.text();
+					alert(tag_a.text());
+					alert(targetNickname);
+					window.location = "userinfo.jsp?targetNickname=" + targetNickname; //+ "&userToken=" + $.query.get("userToken");
+				})
+				
 				showUserInfo();
 				show_messages();
 				

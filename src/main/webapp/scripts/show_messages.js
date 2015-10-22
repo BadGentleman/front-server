@@ -1,6 +1,26 @@
 /**
  * Created by zhuzirui on 10/12/15.
  */
+
+/**
+ * @content 通过author获取用户的用户名
+ */
+function getUsernameByNickname(targetNickname) {
+	$.ajax({
+		type : "post",
+		url : "user/getTargetinfo",
+		data : {
+			nickname : targetNickname
+		},
+		dataType : "json",
+		success : function(data) {
+			$.each(data, function() {
+				return data.returndata.username;
+			});
+		}
+	});
+}
+
 function show_messages() {
 	$
 			.ajax({
@@ -20,39 +40,38 @@ function show_messages() {
 										$("#weibo").empty();
 										var i = 0;
 										while (data.returndata[i] != undefined) {
+											/////////////////////////////////////////
+											var username;
+											var targetNickname = data.returndata[i].author;
+											$.ajax({
+												type : "post",
+												url : "user/getTargetinfo",
+												data : {
+													nickname : targetNickname
+												},
+												dataType : "json",
+												success : function(data) {
+													$.each(data, function() {
+														username = data.returndata.username;
+													});
+												}
+											});
+											//////////////////////////////////////////
 											$("#weibo")
 													.append(
-															/*
-															 * "<li
-															 * id=\"weibo_" +
-															 * data.returndata[i].id +
-															 * "\"><br><img
-															 * class=\"weibo_icon\"
-															 * src=\"pic/" +
-															 * $.query
-															 * .get("username") +
-															 * ".jpg\"
-															 * onerror=\"javascript:this.src='images/no_user_icon.png'\">" + "<span
-															 * class=\"weibo_name\">" +
-															 * data.returndata[i].author + "</span><span
-															 * class=\"create_time\">" +
-															 * data.returndata[i].create_time + "</span><br><span
-															 * class=\"content\">" +
-															 * data.returndata[i].content + "</span><br>转发<span
-															 * class=\"repost_times\">" +
-															 * data.returndata[i].repost_times + "</span>评论<span
-															 * class=\"comment_times\">" +
-															 * data.returndata[i].comment_times + "</span>赞<span
-															 * class=\"support_times\">" +
-															 * data.returndata[i].support_times //
-															 * 获取评论模块 + "</span><div
-															 * id=\"comment_" +
-															 * data.returndata[i].id +
-															 * "\"></div>" + "</li>");
-															 */
 															"<li id=\"weibo_"
 																	+ data.returndata[i].id
-																	+ "\"><div class=\"weiboinfo\"><div class=\"userPic\"><a href=\"javascript:void(0);\"><img src=\"\" onerror=\"javascript:this.src='images/no_found.png'\"/></a></div><div class=\"msgBox\"><div class=\"username\"><a href=\"javascript:void(0);\">"
+																	+ "\"><div class=\"weiboinfo\"><div class=\"userPic\"><a href=\""
+																	+ "userinfo.jsp?targetNickname="
+																	+ data.returndata[i].author
+																	+ "\"><img class=\"icon\" src=\""
+																	+ "pic/"
+																	+ username
+																	+ ".jpg"
+																	+ "\" onerror=\"javascript:this.src='images/no_found.png'\"/></a></div><div class=\"msgBox\"><div class=\"username\"><a href=\""
+																	+ "userinfo.jsp?targetNickname="
+																	+ data.returndata[i].author
+																	+ "\">"
 																	+ data.returndata[i].author
 																	+ "</a></div><div class=\"txt\">"
 																	+ data.returndata[i].content

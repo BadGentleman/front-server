@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="userinfo">
-		<img src="" onerror="this.src='images/no_found.png'">
+		<img style="width:100px; height:100px;"src="" onerror="this.src='images/no_found.png'">
 		<div class="targetUsername">
 			用户名：
 			<div></div>
