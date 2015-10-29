@@ -66,6 +66,7 @@
 		<div class="f"></div>
 	</div>
 </body>
+<script src="plugins/jquery.validate-1.13.1.js" type="text/javascript"></script>
 <script src="plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 <script src="plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
